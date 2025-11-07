@@ -112,3 +112,11 @@ main {
         font-size: 14px;
     }
 }
+/* 讓 nav 在手機更美觀 */
+nav::-webkit-scrollbar {
+    height: 6px;
+}
+nav::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.3);
+    border-radius: 3px;
+}

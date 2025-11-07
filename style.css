@@ -1,17 +1,39 @@
+/* 重置與基本設定 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: row; /* 電腦：左右 */
+}
+
+/* ===== 導覽列 ===== */
 nav {
     display: flex;
     justify-content: center;
     background-color: #333;
     padding: 10px;
+    flex-direction: column; /* 預設直排（手機優先） */
+    align-items: center;
+    width: 100%; /* 手機時佔滿 */
 }
+
 nav a {
     position: relative;
     color: white;
     text-decoration: none;
     text-align: center;
-    margin: 0 20px;
-    padding: 5px 10px;
-    overflow: hidden;/* 防止圓圈超出範圍 */
+    margin: 10px 20px;
+    padding: 8px 16px;
+    overflow: hidden;
+    white-space: nowrap;
+    z-index: 1;
+    width: fit-content;
 }
 
 nav a::before {
@@ -23,32 +45,70 @@ nav a::before {
     height: 0;
     background: radial-gradient(
         circle,
-        rgba(250, 211, 255, 0) 20%,     /* 中心亮黃色 */
-        rgba(250, 211, 255, 0.2) 75%,    /* 漸層往外 */
-        rgba(250, 211, 255, 1) 100%      /* 外圍完全透明 */
+        rgba(250, 211, 255, 0) 20%,
+        rgba(250, 211, 255, 0.2) 75%,
+        rgba(250, 211, 255, 1) 100%
     );
-    border-radius: 20%;
+    border-radius: 50%;
     transform: translate(-50%, -50%);
     transition: width 0.5s ease, height 0.5s ease;
-    z-index: 0;
+    z-index: -1;
 }
 
 nav a:hover::before {
-    width: 98%;
-    height: 98%;
+    width: 150px;
+    height: 150px;
 }
 
-/* 電腦版 */
-body {
-  font-size: 18px;
-  display: flex;
-  flex-direction: row;
+/* ===== 主內容 ===== */
+main {
+    flex: 1;
+    padding: 20px;
+    text-align: center;
 }
 
-/* 手機版 (寬度小於768px 時) */
-@media screen and (max-width: 768px) {
-  body {
-    font-size: 16px;
-    flex-direction: column;
-  }
+/* ===== 電腦版（>= 768px） ===== */
+@media screen and (min-width: 768px) {
+    body {
+        font-size: 18px;
+        flex-direction: row;
+    }
+
+    nav {
+        flex-direction: column;
+        width: 200px;           /* 電腦時固定寬度 */
+        justify-content: flex-start;
+        padding: 20px 0;
+    }
+
+    nav a {
+        margin: 15px 0;
+        width: 100%;
+    }
+
+    main {
+        padding: 40px;
+    }
+}
+
+/* ===== 手機版（< 768px） ===== */
+@media screen and (max-width: 767px) {
+    body {
+        font-size: 16px;
+        flex-direction: column;
+    }
+
+    nav {
+        flex-direction: row;     /* 手機橫排 */
+        width: 100%;
+        overflow-x: auto;        /* 太長可左右滑 */
+        white-space: nowrap;
+        padding: 10px 0;
+    }
+
+    nav a {
+        margin: 0 10px;
+        padding: 8px 12px;
+        font-size: 14px;
+    }
 }

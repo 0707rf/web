@@ -60,6 +60,15 @@ nav a:hover::before {
     height: 150px;
 }
 
+/* 讓 nav 在手機更美觀 */
+nav::-webkit-scrollbar {
+    height: 6px;
+}
+nav::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.3);
+    border-radius: 3px;
+}
+
 /* ===== 主內容 ===== */
 main {
     flex: 1;
@@ -112,5 +121,6 @@ main {
         font-size: 14px;
     }
 }
+
 
 

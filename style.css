@@ -1,0 +1,54 @@
+nav {
+    display: flex;
+    justify-content: center;
+    background-color: #333;
+    padding: 10px;
+}
+nav a {
+    position: relative;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    margin: 0 20px;
+    padding: 5px 10px;
+    overflow: hidden;/* 防止圓圈超出範圍 */
+}
+
+nav a::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(
+        circle,
+        rgba(250, 211, 255, 0) 20%,     /* 中心亮黃色 */
+        rgba(250, 211, 255, 0.2) 75%,    /* 漸層往外 */
+        rgba(250, 211, 255, 1) 100%      /* 外圍完全透明 */
+    );
+    border-radius: 20%;
+    transform: translate(-50%, -50%);
+    transition: width 0.5s ease, height 0.5s ease;
+    z-index: 0;
+}
+
+nav a:hover::before {
+    width: 98%;
+    height: 98%;
+}
+
+/* 電腦版 */
+body {
+  font-size: 18px;
+  display: flex;
+  flex-direction: row;
+}
+
+/* 手機版 (寬度小於768px 時) */
+@media screen and (max-width: 768px) {
+  body {
+    font-size: 16px;
+    flex-direction: column;
+  }
+}
